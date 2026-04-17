@@ -66,7 +66,7 @@ export const productsByCategory = {
       "id": "Vegetables-1",
       "name": "Tomato",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Tomato%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/0d/a5/b3/0da5b3c15a78d37d28bbf27cd9608ce3.jpg",
       "price": 65,
       "weight": "1Kg"
     },
@@ -74,7 +74,7 @@ export const productsByCategory = {
       "id": "Vegetables-2",
       "name": "Potato",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Potato%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/1200x/38/56/ca/3856caac4faf750fc6ead101f06ea782.jpg ",
       "price": 67,
       "weight": "500g"
     },
@@ -82,7 +82,7 @@ export const productsByCategory = {
       "id": "Vegetables-3",
       "name": "Onion",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Onion%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/08/5d/48/085d48a57df5cf41a0fac9172b652f85.jpg ",
       "price": 69,
       "weight": "2Kg"
     },
@@ -90,7 +90,7 @@ export const productsByCategory = {
       "id": "Vegetables-4",
       "name": "Carrot",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Carrot%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/9d/42/a1/9d42a1d8a7cebb7497cc2724171b7f10.jpg",
       "price": 71,
       "weight": "750g"
     },
@@ -98,7 +98,7 @@ export const productsByCategory = {
       "id": "Vegetables-5",
       "name": "Cabbage",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cabbage%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/62/3f/67/623f67ee174b32e3cc9c85d4b76d2256.jpg",
       "price": 73,
       "weight": "1Kg"
     },
@@ -106,7 +106,7 @@ export const productsByCategory = {
       "id": "Vegetables-6",
       "name": "Cauliflower",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cauliflower%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/42/2e/6a/422e6a38ce58da0d10b0f17518cc6e89.jpg ",
       "price": 75,
       "weight": "500g"
     },
@@ -114,7 +114,7 @@ export const productsByCategory = {
       "id": "Vegetables-7",
       "name": "Broccoli",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Broccoli%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/e0/77/dd/e077dd17e4830620451617414d01082b.jpg",
       "price": 77,
       "weight": "2Kg"
     },
@@ -122,7 +122,7 @@ export const productsByCategory = {
       "id": "Vegetables-8",
       "name": "Spinach",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Spinach%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/88/a7/b6/88a7b6e15ed1c5722cfbd456fb4ddd93.jpg",
       "price": 79,
       "weight": "750g"
     },
@@ -130,7 +130,7 @@ export const productsByCategory = {
       "id": "Vegetables-9",
       "name": "Cucumber",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cucumber%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/2e/ab/d0/2eabd0699cc26bd3fa9957979e273b87.jpg",
       "price": 81,
       "weight": "1Kg"
     },
@@ -138,7 +138,7 @@ export const productsByCategory = {
       "id": "Vegetables-10",
       "name": "Bottle Gourd",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Bottle%20Gourd%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/1200x/f1/15/c0/f115c05d78e3c331cdf7048bfb111ec7.jpg ",
       "price": 83,
       "weight": "500g"
     },
@@ -146,7 +146,7 @@ export const productsByCategory = {
       "id": "Vegetables-11",
       "name": "Bitter Gourd",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Bitter%20Gourd%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/ff/ea/87/ffea874e4981763eb78e2cadefa2fc24.jpg",
       "price": 85,
       "weight": "2Kg"
     },
@@ -154,7 +154,7 @@ export const productsByCategory = {
       "id": "Vegetables-12",
       "name": "Ridge Gourd",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Ridge%20Gourd%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/236x/a6/0b/5b/a60b5b1a2a678efe4f8a38f294727b24.jpg",
       "price": 87,
       "weight": "750g"
     },
@@ -162,7 +162,7 @@ export const productsByCategory = {
       "id": "Vegetables-13",
       "name": "Pumpkin",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Pumpkin%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/78/bd/05/78bd0586b2670d7f8c7fff3936bc669e.jpg",
       "price": 89,
       "weight": "1Kg"
     },
@@ -170,7 +170,7 @@ export const productsByCategory = {
       "id": "Vegetables-14",
       "name": "Brinjal",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Brinjal%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/e7/06/5d/e7065dc5e1224754a6d9ef23f994eb8f.jpg",
       "price": 91,
       "weight": "500g"
     },
@@ -178,7 +178,7 @@ export const productsByCategory = {
       "id": "Vegetables-15",
       "name": "Capsicum",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Capsicum%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/1200x/4e/cd/09/4ecd0915d42d3fc5b84117fa235f8fcd.jpg",
       "price": 93,
       "weight": "2Kg"
     },
@@ -186,7 +186,7 @@ export const productsByCategory = {
       "id": "Vegetables-16",
       "name": "Green Chilli",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Green%20Chilli%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/1200x/78/30/74/7830748b3c415bd49ed4f58dcae4c463.jpg ",
       "price": 95,
       "weight": "750g"
     },
@@ -194,7 +194,7 @@ export const productsByCategory = {
       "id": "Vegetables-17",
       "name": "Beetroot",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Beetroot%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/f3/1a/53/f31a536e74b2329fa96bd182d3d5ae95.jpg",
       "price": 97,
       "weight": "1Kg"
     },
@@ -202,7 +202,7 @@ export const productsByCategory = {
       "id": "Vegetables-18",
       "name": "Radish",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Radish%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/1b/26/ba/1b26ba0bf0adef9e1bb6fe2d247616df.jpg ",
       "price": 99,
       "weight": "500g"
     },
@@ -210,7 +210,7 @@ export const productsByCategory = {
       "id": "Vegetables-19",
       "name": "Turnip",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Turnip%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/f5/1e/e7/f51ee7c03c5ef74e067866f1fba92888.jpg",
       "price": 101,
       "weight": "2Kg"
     },
@@ -218,7 +218,7 @@ export const productsByCategory = {
       "id": "Vegetables-20",
       "name": "Sweet Potato",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Sweet%20Potato%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/9c/61/64/9c61649d525b92aefbb77e7131faddcf.jpg",
       "price": 103,
       "weight": "750g"
     },
@@ -226,7 +226,7 @@ export const productsByCategory = {
       "id": "Vegetables-21",
       "name": "Lady Finger",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Lady%20Finger%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/88/28/fb/8828fb047d5a2f86ff3cb24637a46b15.jpg",
       "price": 105,
       "weight": "1Kg"
     },
@@ -234,7 +234,7 @@ export const productsByCategory = {
       "id": "Vegetables-22",
       "name": "Drumstick",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Drumstick%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/d3/13/a5/d313a54087afb92897f942e82fdf5465.jpg ",
       "price": 107,
       "weight": "500g"
     },
@@ -242,7 +242,7 @@ export const productsByCategory = {
       "id": "Vegetables-23",
       "name": "Green Peas",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Green%20Peas%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/e6/b5/79/e6b579772936c672a0bdc3a7f700ee9e.jpg",
       "price": 109,
       "weight": "2Kg"
     },
@@ -250,7 +250,7 @@ export const productsByCategory = {
       "id": "Vegetables-24",
       "name": "French Beans",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?French%20Beans%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/90/73/25/907325588142ac75977db378a7ba0b33.jpg ",
       "price": 111,
       "weight": "750g"
     },
@@ -258,7 +258,7 @@ export const productsByCategory = {
       "id": "Vegetables-25",
       "name": "Cluster Beans",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cluster%20Beans%20Vegetables",
+      "imageUrl": "https://i.pinimg.com/736x/05/7c/11/057c1182f3e1f21ef25e712b16780c25.jpg ",
       "price": 113,
       "weight": "1Kg"
     },
@@ -266,7 +266,7 @@ export const productsByCategory = {
       "id": "Vegetables-26",
       "name": "Spring Onion",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Spring%20Onion%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/72/2c/2b/722c2bb282ed4c9fed3f1b114ec78f10.jpg",
       "price": 115,
       "weight": "500g"
     },
@@ -274,7 +274,7 @@ export const productsByCategory = {
       "id": "Vegetables-27",
       "name": "Fenugreek Leaves",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Fenugreek%20Leaves%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/736x/51/11/e8/5111e836749b161be7d6360f7a902c69.jpg",
       "price": 117,
       "weight": "2Kg"
     },
@@ -282,7 +282,7 @@ export const productsByCategory = {
       "id": "Vegetables-28",
       "name": "Coriander Leaves",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Coriander%20Leaves%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/1200x/65/d6/ae/65d6ae5f6f643abc59858e0a09455ae0.jpg",
       "price": 119,
       "weight": "750g"
     },
@@ -290,7 +290,7 @@ export const productsByCategory = {
       "id": "Vegetables-29",
       "name": "Lettuce",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Lettuce%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/1200x/bb/73/0e/bb730e99ac71a36b1b232c8fd31e02aa.jpg",
       "price": 121,
       "weight": "1Kg"
     },
@@ -298,7 +298,7 @@ export const productsByCategory = {
       "id": "Vegetables-30",
       "name": "Zucchini",
       "category": "Vegetables",
-      "imageUrl": "https://source.unsplash.com/600x600/?Zucchini%20Vegetables",
+      "imageUrl": " https://i.pinimg.com/1200x/81/13/16/8113167561c82e82a85f6209e2f7f7c9.jpg",
       "price": 123,
       "weight": "500g"
     }
@@ -308,7 +308,7 @@ export const productsByCategory = {
       "id": "Fruits-1",
       "name": "Apple",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Apple%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/6d/0c/4c/6d0c4c4e9f81f60f6aa336acc6cb4187.jpg",
       "price": 65,
       "weight": "1Kg"
     },
@@ -316,7 +316,7 @@ export const productsByCategory = {
       "id": "Fruits-2",
       "name": "Banana",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Banana%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/1f/a0/1c/1fa01c73f13f73495ead5e389e6c6490.jpg",
       "price": 67,
       "weight": "500g"
     },
@@ -324,7 +324,7 @@ export const productsByCategory = {
       "id": "Fruits-3",
       "name": "Orange",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Orange%20Fruits",
+      "imageUrl": " https://i.pinimg.com/1200x/06/88/97/06889741cafc9ccb656300262aa9eb3e.jpg",
       "price": 69,
       "weight": "2Kg"
     },
@@ -332,7 +332,7 @@ export const productsByCategory = {
       "id": "Fruits-4",
       "name": "Mango",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Mango%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/42/00/ac/4200ac09886b04bd5d789dbb2149de27.jpg",
       "price": 71,
       "weight": "750g"
     },
@@ -340,7 +340,7 @@ export const productsByCategory = {
       "id": "Fruits-5",
       "name": "Grapes",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Grapes%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/fb/ce/d9/fbced9cbc31e528b990309b24ff8e438.jpg ",
       "price": 73,
       "weight": "1Kg"
     },
@@ -348,7 +348,7 @@ export const productsByCategory = {
       "id": "Fruits-6",
       "name": "Pineapple",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Pineapple%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/47/cd/15/47cd15cf1d40f2b636bbde42780774d7.jpg",
       "price": 75,
       "weight": "500g"
     },
@@ -356,7 +356,7 @@ export const productsByCategory = {
       "id": "Fruits-7",
       "name": "Papaya",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Papaya%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/2c/5a/ee/2c5aeef79f3f42e021f988983d66f4bc.jpg ",
       "price": 77,
       "weight": "2Kg"
     },
@@ -364,7 +364,7 @@ export const productsByCategory = {
       "id": "Fruits-8",
       "name": "Pomegranate",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Pomegranate%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/0f/49/6a/0f496a1e2ae70190835653363dc81b1d.jpg",
       "price": 79,
       "weight": "750g"
     },
@@ -372,7 +372,7 @@ export const productsByCategory = {
       "id": "Fruits-9",
       "name": "Watermelon",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Watermelon%20Fruits",
+      "imageUrl": " https://i.pinimg.com/1200x/ba/f6/91/baf6912c53291acb64f3b7aaef603f02.jpg",
       "price": 81,
       "weight": "1Kg"
     },
@@ -380,7 +380,7 @@ export const productsByCategory = {
       "id": "Fruits-10",
       "name": "Muskmelon",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Muskmelon%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/9e/76/37/9e763768209f47b12a342a5a2bfbaf32.jpg",
       "price": 83,
       "weight": "500g"
     },
@@ -388,7 +388,7 @@ export const productsByCategory = {
       "id": "Fruits-11",
       "name": "Guava",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Guava%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/f7/bc/14/f7bc14d033fff2107513ca9ef5989a84.jpg",
       "price": 85,
       "weight": "2Kg"
     },
@@ -396,7 +396,7 @@ export const productsByCategory = {
       "id": "Fruits-12",
       "name": "Pear",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Pear%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/8c/5c/09/8c5c0937d46cb150bdb3a33e304c26d3.jpg ",
       "price": 87,
       "weight": "750g"
     },
@@ -404,7 +404,7 @@ export const productsByCategory = {
       "id": "Fruits-13",
       "name": "Peach",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Peach%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/49/30/5b/49305b363fb70b2559f5a4e08718d24e.jpg",
       "price": 89,
       "weight": "1Kg"
     },
@@ -412,7 +412,7 @@ export const productsByCategory = {
       "id": "Fruits-14",
       "name": "Plum",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Plum%20Fruits",
+      "imageUrl": " https://i.pinimg.com/1200x/86/0b/bb/860bbb34b389a05d61a9fd3d2f39afb6.jpg",
       "price": 91,
       "weight": "500g"
     },
@@ -420,7 +420,7 @@ export const productsByCategory = {
       "id": "Fruits-15",
       "name": "Kiwi",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Kiwi%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/b6/77/c2/b677c202e291617a4babc12ccfa6302c.jpg",
       "price": 93,
       "weight": "2Kg"
     },
@@ -428,7 +428,7 @@ export const productsByCategory = {
       "id": "Fruits-16",
       "name": "Strawberry",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Strawberry%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/63/28/47/6328472978d536564409cbfdb91d6b5e.jpg",
       "price": 95,
       "weight": "750g"
     },
@@ -436,7 +436,7 @@ export const productsByCategory = {
       "id": "Fruits-17",
       "name": "Blueberry",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Blueberry%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/70/7e/9d/707e9d3ddb6b2da2667928d0b18a409c.jpg",
       "price": 97,
       "weight": "1Kg"
     },
@@ -444,7 +444,7 @@ export const productsByCategory = {
       "id": "Fruits-18",
       "name": "Raspberry",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Raspberry%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/e9/a2/37/e9a237491e9173e13ffd785292e5a63b.jpg ",
       "price": 99,
       "weight": "500g"
     },
@@ -452,7 +452,7 @@ export const productsByCategory = {
       "id": "Fruits-19",
       "name": "Blackberry",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Blackberry%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/fe/68/b7/fe68b7439dbaf2197a57b59b94f77ccf.jpg",
       "price": 101,
       "weight": "2Kg"
     },
@@ -460,7 +460,7 @@ export const productsByCategory = {
       "id": "Fruits-20",
       "name": "Cherry",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cherry%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/80/3b/57/803b57e607cafb92cac7d883c9a1fc3f.jpg ",
       "price": 103,
       "weight": "750g"
     },
@@ -468,7 +468,7 @@ export const productsByCategory = {
       "id": "Fruits-21",
       "name": "Dragon Fruit",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Dragon%20Fruit%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/9e/19/f4/9e19f4f20457a2c7f19a9e315b037c40.jpg",
       "price": 105,
       "weight": "1Kg"
     },
@@ -476,7 +476,7 @@ export const productsByCategory = {
       "id": "Fruits-22",
       "name": "Lychee",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Lychee%20Fruits",
+      "imageUrl": "https://i.pinimg.com/1200x/99/f0/1e/99f01e92ec78956964cc658c50d29a0b.jpg ",
       "price": 107,
       "weight": "500g"
     },
@@ -484,7 +484,7 @@ export const productsByCategory = {
       "id": "Fruits-23",
       "name": "Custard Apple",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Custard%20Apple%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/7b/a0/0f/7ba00f4cc9ba6d93af840f9a3417e514.jpg ",
       "price": 109,
       "weight": "2Kg"
     },
@@ -492,7 +492,7 @@ export const productsByCategory = {
       "id": "Fruits-24",
       "name": "Sapota",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Sapota%20Fruits",
+      "imageUrl": " https://i.pinimg.com/736x/1a/cb/af/1acbaf18708c9e9b2d9d1373a67777f5.jpg",
       "price": 111,
       "weight": "750g"
     },
@@ -500,7 +500,7 @@ export const productsByCategory = {
       "id": "Fruits-25",
       "name": "Fig",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Fig%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/7f/98/40/7f9840a67c8c256f8c01a067f8d289f4.jpg ",
       "price": 113,
       "weight": "1Kg"
     },
@@ -508,7 +508,7 @@ export const productsByCategory = {
       "id": "Fruits-26",
       "name": "Apricot",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Apricot%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/1f/71/aa/1f71aae8a8f5b966c11a1ec63a6e7de3.jpg ",
       "price": 115,
       "weight": "500g"
     },
@@ -516,7 +516,7 @@ export const productsByCategory = {
       "id": "Fruits-27",
       "name": "Coconut",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Coconut%20Fruits",
+      "imageUrl": "https://i.pinimg.com/1200x/2b/35/3f/2b353f1778e3b9d96c00eed15c395ff2.jpg ",
       "price": 117,
       "weight": "2Kg"
     },
@@ -524,7 +524,7 @@ export const productsByCategory = {
       "id": "Fruits-28",
       "name": "Sweet Lime",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Sweet%20Lime%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/27/33/20/273320661f7d80262db8c62fdaa8cc8b.jpg ",
       "price": 119,
       "weight": "750g"
     },
@@ -532,7 +532,7 @@ export const productsByCategory = {
       "id": "Fruits-29",
       "name": "Jamun",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Jamun%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/12/ec/89/12ec8919647114f18276f2b6554b1c02.jpg ",
       "price": 121,
       "weight": "1Kg"
     },
@@ -540,7 +540,7 @@ export const productsByCategory = {
       "id": "Fruits-30",
       "name": "Amla",
       "category": "Fruits",
-      "imageUrl": "https://source.unsplash.com/600x600/?Amla%20Fruits",
+      "imageUrl": "https://i.pinimg.com/736x/b6/c9/e8/b6c9e8668615fb47e1f043f4ccc0bcf4.jpg ",
       "price": 123,
       "weight": "500g"
     }
