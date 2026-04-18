@@ -1034,7 +1034,7 @@ export const productsByCategory = {
       "id": "Masala-1",
       "name": "Turmeric Powder",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Turmeric%20Powder%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/af/84/80/af848022ebeaf5753a97311de33ac68c.jpg",
       "price": 65,
       "weight": "1Kg"
     },
@@ -1042,7 +1042,7 @@ export const productsByCategory = {
       "id": "Masala-2",
       "name": "Red Chilli Powder",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Red%20Chilli%20Powder%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/6e/b4/4b/6eb44b910adc414ed4c7a336b044aeca.jpg",
       "price": 67,
       "weight": "500g"
     },
@@ -1050,7 +1050,7 @@ export const productsByCategory = {
       "id": "Masala-3",
       "name": "Coriander Powder",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Coriander%20Powder%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/64/70/21/64702155ec10fef1da8df90bd2dcde17.jpg",
       "price": 69,
       "weight": "2Kg"
     },
@@ -1058,7 +1058,7 @@ export const productsByCategory = {
       "id": "Masala-4",
       "name": "Cumin Powder",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cumin%20Powder%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/b7/a2/9a/b7a29a2e220c4ac29619ea77bed60e7e.jpg",
       "price": 71,
       "weight": "750g"
     },
@@ -1066,7 +1066,7 @@ export const productsByCategory = {
       "id": "Masala-5",
       "name": "Garam Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Garam%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/3a/4c/c6/3a4cc6e6284f846eb7629685578252da.jpg",
       "price": 73,
       "weight": "1Kg"
     },
@@ -1074,7 +1074,7 @@ export const productsByCategory = {
       "id": "Masala-6",
       "name": "Kitchen King Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Kitchen%20King%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/00/00/f1/0000f113400cd7e79227de22f698a2f6.jpg",
       "price": 75,
       "weight": "500g"
     },
@@ -1082,7 +1082,7 @@ export const productsByCategory = {
       "id": "Masala-7",
       "name": "Sambar Powder",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Sambar%20Powder%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/f6/27/80/f6278072ed2fbe5a8046e9a567f1ea62.jpg",
       "price": 77,
       "weight": "2Kg"
     },
@@ -1090,7 +1090,7 @@ export const productsByCategory = {
       "id": "Masala-8",
       "name": "Rasam Powder",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Rasam%20Powder%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/fc/dd/12/fcdd12d2e1e875979e2e0f3dc30ffbb6.jpg",
       "price": 79,
       "weight": "750g"
     },
@@ -1098,7 +1098,7 @@ export const productsByCategory = {
       "id": "Masala-9",
       "name": "Pav Bhaji Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Pav%20Bhaji%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/c5/3b/cd/c53bcd731c6dddc94d403884aae10ccd.jpg",
       "price": 81,
       "weight": "1Kg"
     },
@@ -1106,7 +1106,7 @@ export const productsByCategory = {
       "id": "Masala-10",
       "name": "Chaat Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Chaat%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/aa/76/b6/aa76b6f6e4fac8b7681a900e25795f98.jpg",
       "price": 83,
       "weight": "500g"
     },
@@ -1114,7 +1114,7 @@ export const productsByCategory = {
       "id": "Masala-11",
       "name": "Biryani Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Biryani%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/8e/0a/4b/8e0a4ba4564e0ebb68922f9334cc1dc8.jpg",
       "price": 85,
       "weight": "2Kg"
     },
@@ -1122,7 +1122,7 @@ export const productsByCategory = {
       "id": "Masala-12",
       "name": "Chicken Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Chicken%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/e9/92/e0/e992e00b065cd21720ff329f857eb1a8.jpg",
       "price": 87,
       "weight": "750g"
     },
@@ -1130,7 +1130,7 @@ export const productsByCategory = {
       "id": "Masala-13",
       "name": "Meat Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Meat%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/cb/87/ee/cb87ee6696999c2f6f640e8d3c76935e.jpg",
       "price": 89,
       "weight": "1Kg"
     },
@@ -1138,7 +1138,7 @@ export const productsByCategory = {
       "id": "Masala-14",
       "name": "Fish Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Fish%20Masala%20Masala",
+      "imageUrl": " https://i.pinimg.com/1200x/1c/07/cb/1c07cb875e4db4a062df7e6b757ab4b7.jpg",
       "price": 91,
       "weight": "500g"
     },
@@ -1146,7 +1146,7 @@ export const productsByCategory = {
       "id": "Masala-15",
       "name": "Shahi Paneer Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Shahi%20Paneer%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/236x/7e/90/af/7e90afe24ff044f0b7e5d749c0e4c93e.jpg",
       "price": 93,
       "weight": "2Kg"
     },
@@ -1154,7 +1154,7 @@ export const productsByCategory = {
       "id": "Masala-16",
       "name": "Chole Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Chole%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/42/9b/b5/429bb541b45d42420485304b9a8d6aed.jpg",
       "price": 95,
       "weight": "750g"
     },
@@ -1162,7 +1162,7 @@ export const productsByCategory = {
       "id": "Masala-17",
       "name": "Rajma Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Rajma%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/5b/b8/ff/5bb8ff40bcdbe04ede7321b92256b46f.jpg",
       "price": 97,
       "weight": "1Kg"
     },
@@ -1170,7 +1170,7 @@ export const productsByCategory = {
       "id": "Masala-18",
       "name": "Sabzi Masala",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Sabzi%20Masala%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/d6/9b/9d/d69b9da51bdabd99a4f8b354759f1160.jpg",
       "price": 99,
       "weight": "500g"
     },
@@ -1178,7 +1178,7 @@ export const productsByCategory = {
       "id": "Masala-19",
       "name": "Pepper Powder",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Pepper%20Powder%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/79/f2/ea/79f2ea8861a17ebd569c78ffe9315307.jpg",
       "price": 101,
       "weight": "2Kg"
     },
@@ -1186,7 +1186,7 @@ export const productsByCategory = {
       "id": "Masala-20",
       "name": "Mustard Seeds",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Mustard%20Seeds%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/f1/b8/dd/f1b8dd388990a31af4dbfacaa35e3c93.jpg",
       "price": 103,
       "weight": "750g"
     },
@@ -1194,7 +1194,7 @@ export const productsByCategory = {
       "id": "Masala-21",
       "name": "Cumin Seeds",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cumin%20Seeds%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/7c/af/aa/7cafaa997c7a06ee1a2b88e22c8263f7.jpg",
       "price": 105,
       "weight": "1Kg"
     },
@@ -1202,7 +1202,7 @@ export const productsByCategory = {
       "id": "Masala-22",
       "name": "Fenugreek Seeds",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Fenugreek%20Seeds%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/66/2b/40/662b404eac2960430abe1169c7861d05.jpg",
       "price": 107,
       "weight": "500g"
     },
@@ -1210,7 +1210,7 @@ export const productsByCategory = {
       "id": "Masala-23",
       "name": "Fennel Seeds",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Fennel%20Seeds%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/17/26/23/172623cf1a31d71d4bf673979f31c0eb.jpg",
       "price": 109,
       "weight": "2Kg"
     },
@@ -1218,7 +1218,7 @@ export const productsByCategory = {
       "id": "Masala-24",
       "name": "Ajwain Seeds",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Ajwain%20Seeds%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/3c/94/9d/3c949d90a115916e533989f295fcb191.jpg",
       "price": 111,
       "weight": "750g"
     },
@@ -1226,7 +1226,7 @@ export const productsByCategory = {
       "id": "Masala-25",
       "name": "Cardamom",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cardamom%20Masala",
+      "imageUrl": "https://i.pinimg.com/736x/5e/25/e6/5e25e637951ea1378b33773d31eb0743.jpg",
       "price": 113,
       "weight": "1Kg"
     },
@@ -1234,7 +1234,7 @@ export const productsByCategory = {
       "id": "Masala-26",
       "name": "Cloves",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cloves%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/11/88/f5/1188f55309a85815482aa12be9f303fa.jpg",
       "price": 115,
       "weight": "500g"
     },
@@ -1242,7 +1242,7 @@ export const productsByCategory = {
       "id": "Masala-27",
       "name": "Cinnamon Sticks",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Cinnamon%20Sticks%20Masala",
+      "imageUrl": "https://i.pinimg.com/236x/73/62/31/73623112657b581121dba8b7f6387649.jpg",
       "price": 117,
       "weight": "2Kg"
     },
@@ -1250,7 +1250,7 @@ export const productsByCategory = {
       "id": "Masala-28",
       "name": "Bay Leaves",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Bay%20Leaves%20Masala",
+      "imageUrl": "https://i.pinimg.com/236x/3f/97/e1/3f97e17904e84e70e3cc0dd3ceb3e595.jpg",
       "price": 119,
       "weight": "750g"
     },
@@ -1258,7 +1258,7 @@ export const productsByCategory = {
       "id": "Masala-29",
       "name": "Kasuri Methi",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Kasuri%20Methi%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/72/5d/33/725d33e0d8e081f97380fa7725c36d4f.jpg",
       "price": 121,
       "weight": "1Kg"
     },
@@ -1266,7 +1266,7 @@ export const productsByCategory = {
       "id": "Masala-30",
       "name": "Hing",
       "category": "Masala",
-      "imageUrl": "https://source.unsplash.com/600x600/?Hing%20Masala",
+      "imageUrl": "https://i.pinimg.com/1200x/a8/c2/43/a8c243ecce4f1b5d6b1e86590cfecf46.jpg",
       "price": 123,
       "weight": "500g"
     }
