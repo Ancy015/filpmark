@@ -28,24 +28,36 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedQuantities, setSelectedQuantities] = useState({});
   const [cartItems, setCartItems] = useState([]);
-  const [isFirstOrder, setIsFirstOrder] = useState(true);
+  const [isCartPanelOpen, setIsCartPanelOpen] = useState(false);
+  const [showOrderHistory, setShowOrderHistory] = useState(false);
   const [orderStatus, setOrderStatus] = useState('idle');
+  const [orderMeta, setOrderMeta] = useState(null);
   const [authMode, setAuthMode] = useState('login');
-  const [savedAccount, setSavedAccount] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [orderHistoryByEmail, setOrderHistoryByEmail] = useState({});
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [authMessage, setAuthMessage] = useState('');
   const [authForm, setAuthForm] = useState({
     name: '',
+    userId: '',
+    loginId: '',
     email: '',
     password: '',
   });
 
+  const allProducts = useMemo(() => {
+    return Object.values(productsByCategory).flat();
+  }, []);
+
   const activeProducts = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase();
-    let items = [...(productsByCategory[activeCategory] || [])];
+    let items = normalizedSearch ? [...allProducts] : [...(productsByCategory[activeCategory] || [])];
 
     if (normalizedSearch) {
-      items = items.filter((item) => item.name.toLowerCase().includes(normalizedSearch));
+      items = items.filter((item) => {
+        const searchableText = `${item.name} ${item.category} ${item.weight}`.toLowerCase();
+        return searchableText.includes(normalizedSearch);
+      });
     }
 
     if (sortMode === 'price-asc') {
@@ -61,7 +73,7 @@ function App() {
     }
 
     return items;
-  }, [activeCategory, searchTerm, sortMode]);
+  }, [activeCategory, allProducts, searchTerm, sortMode]);
 
   const pageSize = 30;
   const totalPages = Math.max(1, Math.ceil(activeProducts.length / pageSize));
@@ -78,7 +90,7 @@ function App() {
   };
 
   const handleSearch = () => {
-    setSearchTerm(searchInput);
+    setSearchTerm(searchInput.trim());
     setCurrentPage(1);
   };
 
@@ -102,8 +114,26 @@ function App() {
     return cartItems.reduce((total, item) => total + item.lineTotal, 0);
   }, [cartItems]);
 
-  const discountAmount = isFirstOrder ? cartSubtotal * 0.5 : 0;
+  const normalizedLoggedInEmail = loggedInUser?.email?.toLowerCase() || '';
+  const emailOrderHistory = orderHistoryByEmail[normalizedLoggedInEmail] || [];
+  const isFirstOrderForEmail = Boolean(loggedInUser) && emailOrderHistory.length === 0;
+  const discountAmount = isFirstOrderForEmail ? cartSubtotal * 0.5 : 0;
   const finalTotal = cartSubtotal - discountAmount;
+  const deliveryAddress = 'Door 24, Green Park Street, Chennai - 600028';
+
+  const orderStatusLabel =
+    orderStatus === 'ordered'
+      ? 'Ordered'
+      : orderStatus === 'out-for-delivery'
+        ? 'Out for Delivery'
+        : orderStatus === 'delivered'
+          ? 'Delivered'
+          : 'Idle';
+
+  const openHistoryPanel = () => {
+    setIsCartPanelOpen(true);
+    setShowOrderHistory(true);
+  };
 
   useEffect(() => {
     const clickAnimationHandler = (event) => {
@@ -126,6 +156,27 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const storedAccounts = window.localStorage.getItem('flipmark-accounts-v1');
+    const storedOrderHistory = window.localStorage.getItem('flipmark-order-history-v1');
+
+    if (storedAccounts) {
+      setAccounts(JSON.parse(storedAccounts));
+    }
+
+    if (storedOrderHistory) {
+      setOrderHistoryByEmail(JSON.parse(storedOrderHistory));
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('flipmark-accounts-v1', JSON.stringify(accounts));
+  }, [accounts]);
+
+  useEffect(() => {
+    window.localStorage.setItem('flipmark-order-history-v1', JSON.stringify(orderHistoryByEmail));
+  }, [orderHistoryByEmail]);
+
+  useEffect(() => {
     if (orderStatus !== 'ordered') {
       return undefined;
     }
@@ -138,6 +189,33 @@ function App() {
       clearTimeout(deliveredTimer);
     };
   }, [orderStatus]);
+
+  useEffect(() => {
+    if (!loggedInUser || !orderMeta || orderStatus === 'idle') {
+      return;
+    }
+
+    const userEmail = loggedInUser.email.toLowerCase();
+
+    setOrderHistoryByEmail((previous) => {
+      const existingOrders = previous[userEmail] || [];
+      const updatedOrders = existingOrders.map((order) => {
+        if (order.orderId !== orderMeta.orderId) {
+          return order;
+        }
+
+        return {
+          ...order,
+          status: orderStatus,
+        };
+      });
+
+      return {
+        ...previous,
+        [userEmail]: updatedOrders,
+      };
+    });
+  }, [loggedInUser, orderMeta, orderStatus]);
 
   const getQuantityKey = (product) => {
     return selectedQuantities[product.id] || '1kg';
@@ -191,6 +269,8 @@ function App() {
         };
       });
     });
+
+    setIsCartPanelOpen(true);
   };
 
   const handleRemoveCartItem = (cartKey) => {
@@ -214,11 +294,47 @@ function App() {
       return;
     }
 
-    setOrderStatus('ordered');
+    const newOrderId = `FM-${Date.now().toString().slice(-6)}`;
+    const newPlacedAt = new Date().toLocaleString();
 
-    if (isFirstOrder) {
-      setIsFirstOrder(false);
-    }
+    setOrderStatus('ordered');
+    setOrderMeta({
+      orderId: newOrderId,
+      placedAt: newPlacedAt,
+      customerName: loggedInUser.name,
+      customerEmail: loggedInUser.email,
+    });
+
+    const emailKey = loggedInUser.email.toLowerCase();
+    const orderedItems = cartItems.map((item) => ({
+      name: item.name,
+      quantityKey: item.quantityKey,
+      count: item.count,
+      lineTotal: item.lineTotal,
+    }));
+
+    setOrderHistoryByEmail((previous) => {
+      const existingOrders = previous[emailKey] || [];
+
+      return {
+        ...previous,
+        [emailKey]: [
+          {
+            orderId: newOrderId,
+            placedAt: newPlacedAt,
+            status: 'ordered',
+            items: orderedItems,
+            subtotal: cartSubtotal,
+            discount: discountAmount,
+            total: finalTotal,
+          },
+          ...existingOrders,
+        ],
+      };
+    });
+
+    setIsCartPanelOpen(true);
+    setShowOrderHistory(false);
   };
 
   const handleAuthChange = (event) => {
@@ -233,65 +349,126 @@ function App() {
   const handleAuthSubmit = (event) => {
     event.preventDefault();
 
-    if (!authForm.email.trim() || !authForm.password.trim()) {
-      setAuthMessage('Email and password are required.');
-      return;
-    }
-
     if (authMode === 'signup') {
-      if (!authForm.name.trim()) {
-        setAuthMessage('Name is required for signup.');
+      const name = authForm.name.trim();
+      const userId = authForm.userId.trim();
+      const email = authForm.email.trim().toLowerCase();
+      const password = authForm.password;
+
+      if (!name || !userId || !email || !password) {
+        setAuthMessage('Name, User ID, email and password are required for signup.');
         return;
       }
 
-      setSavedAccount({
-        name: authForm.name.trim(),
-        email: authForm.email.trim().toLowerCase(),
-        password: authForm.password,
-      });
+      const emailTaken = accounts.some((account) => account.email === email);
+      const userIdTaken = accounts.some((account) => account.userId.toLowerCase() === userId.toLowerCase());
 
-      setAuthMessage('Signup successful. Please login to place order.');
+      if (emailTaken) {
+        setAuthMessage('This email is already registered. Please login.');
+        setAuthMode('login');
+        return;
+      }
+
+      if (userIdTaken) {
+        setAuthMessage('This User ID already exists. Please use another one.');
+        return;
+      }
+
+      setAccounts((previous) => [
+        ...previous,
+        {
+          name,
+          userId,
+          email,
+          password,
+        },
+      ]);
+
+      setAuthMessage('Signup successful. Login with email or User ID.');
       setAuthMode('login');
-      setAuthForm((previous) => ({ ...previous, password: '' }));
-      return;
-    }
-
-    if (!savedAccount) {
-      const quickAccount = {
-        name: authForm.name.trim() || 'Customer',
-        email: authForm.email.trim().toLowerCase(),
-        password: authForm.password,
-      };
-
-      setSavedAccount(quickAccount);
-      setLoggedInUser({
-        name: quickAccount.name,
-        email: quickAccount.email,
+      setAuthForm({
+        name: '',
+        userId: '',
+        loginId: '',
+        email: '',
+        password: '',
       });
-      setAuthMessage('Login successful. New account created and signed in.');
-      setAuthForm({ name: '', email: '', password: '' });
+
       return;
     }
 
-    const normalizedEmail = authForm.email.trim().toLowerCase();
+    const loginId = authForm.loginId.trim().toLowerCase();
+    const password = authForm.password;
 
-    if (savedAccount.email !== normalizedEmail || savedAccount.password !== authForm.password) {
-      setAuthMessage('Invalid login details. Try again.');
+    if (!loginId || !password) {
+      setAuthMessage('User ID or email and password are required.');
+      return;
+    }
+
+    const matchedAccount = accounts.find((account) => {
+      return account.email === loginId || account.userId.toLowerCase() === loginId;
+    });
+
+    if (!matchedAccount) {
+      const fallbackEmail = loginId.includes('@') ? loginId : `${loginId}@flipmark.local`;
+      const fallbackUserId = loginId.includes('@') ? loginId.split('@')[0] : loginId;
+
+      setAccounts((previous) => {
+        const existingAccount = previous.find((account) => account.email === fallbackEmail || account.userId.toLowerCase() === fallbackUserId);
+
+        if (existingAccount) {
+          return previous;
+        }
+
+        return [
+          ...previous,
+          {
+            name: fallbackUserId || 'Customer',
+            userId: fallbackUserId || 'customer',
+            email: fallbackEmail,
+            password,
+          },
+        ];
+      });
+
+      setLoggedInUser({
+        name: fallbackUserId || 'Customer',
+        email: fallbackEmail,
+        userId: fallbackUserId || 'customer',
+      });
+      setAuthMessage('Login successful. New account created and opened.');
+      setAuthForm({
+        name: '',
+        userId: '',
+        loginId: '',
+        email: '',
+        password: '',
+      });
       return;
     }
 
     setLoggedInUser({
-      name: savedAccount.name,
-      email: savedAccount.email,
+      name: matchedAccount.name,
+      email: matchedAccount.email,
+      userId: matchedAccount.userId,
     });
     setAuthMessage('Login successful. You can place your order now.');
-    setAuthForm({ name: '', email: '', password: '' });
+    setAuthForm({
+      name: '',
+      userId: '',
+      loginId: '',
+      email: '',
+      password: '',
+    });
   };
 
   const handleLogout = () => {
     setLoggedInUser(null);
     setAuthMessage('You have logged out. Login again to place order.');
     setOrderStatus('idle');
+    setOrderMeta(null);
+    setIsCartPanelOpen(false);
+    setShowOrderHistory(false);
   };
 
   if (!loggedInUser) {
@@ -329,14 +506,36 @@ function App() {
               />
             ) : null}
 
-            <input
-              type="text"
-              name="email"
-              value={authForm.email}
-              onChange={handleAuthChange}
-              placeholder="Email"
-              autoComplete="username"
-            />
+            {authMode === 'signup' ? (
+              <input
+                type="text"
+                name="userId"
+                value={authForm.userId}
+                onChange={handleAuthChange}
+                placeholder="Create User ID"
+              />
+            ) : null}
+
+            {authMode === 'signup' ? (
+              <input
+                type="text"
+                name="email"
+                value={authForm.email}
+                onChange={handleAuthChange}
+                placeholder="Email"
+                autoComplete="username"
+              />
+            ) : (
+              <input
+                type="text"
+                name="loginId"
+                value={authForm.loginId}
+                onChange={handleAuthChange}
+                placeholder="Email or User ID"
+                autoComplete="username"
+              />
+            )}
+
             <input
               type="password"
               name="password"
@@ -390,7 +589,9 @@ function App() {
             <a href="#shop">Shop</a>
             <a href="#about">About</a>
             <a href="#pages">Pages</a>
-            <a href="#blog">Blog</a>
+            <button type="button" className="link-button" onClick={openHistoryPanel}>
+              History
+            </button>
             <a href="#contact">Contact</a>
           </nav>
 
@@ -449,8 +650,31 @@ function App() {
             <p>
               Showing {activeProducts.length === 0 ? 0 : (safePage - 1) * pageSize + 1}-
               {Math.min(safePage * pageSize, activeProducts.length)} of {activeProducts.length} items
+              {searchTerm.trim() ? ` (Search: "${searchTerm.trim()}")` : ''}
             </p>
             <div className="toolbar-actions">
+              <button
+                type="button"
+                className="cart-drawer-toggle"
+                onClick={() => {
+                  setIsCartPanelOpen(true);
+                  setShowOrderHistory(false);
+                }}
+              >
+                My Order ({cartItems.length})
+              </button>
+
+              <button
+                type="button"
+                className="cart-drawer-toggle"
+                onClick={() => {
+                  setIsCartPanelOpen(true);
+                  setShowOrderHistory(true);
+                }}
+              >
+                History ({emailOrderHistory.length})
+              </button>
+
               <div className="filter-chips" aria-label="Quick category filter">
                 <button type="button" className="filter-chip" onClick={() => handleCategoryClick('Vegetables')}>
                   Vegetables
@@ -544,10 +768,58 @@ function App() {
               );
             })}
           </div>
+        </section>
+      </main>
 
-          <div className="cart-summary" id="checkout">
-            <h3>Your Cart / Order</h3>
+      <aside className={`cart-drawer${isCartPanelOpen ? ' open' : ''}`} id="checkout" aria-label="Order drawer">
+        <div className="cart-drawer-header">
+          <h3>Your Cart / Order</h3>
+          <button type="button" className="cart-drawer-close" onClick={() => setIsCartPanelOpen(false)}>
+            Close
+          </button>
+        </div>
 
+        <div className="drawer-view-switch">
+          <button
+            type="button"
+            className={`drawer-view-btn${showOrderHistory ? '' : ' active'}`}
+            onClick={() => setShowOrderHistory(false)}
+          >
+            Current Order
+          </button>
+          <button
+            type="button"
+            className={`drawer-view-btn${showOrderHistory ? ' active' : ''}`}
+            onClick={() => setShowOrderHistory(true)}
+          >
+            History
+          </button>
+        </div>
+
+        {showOrderHistory ? (
+          <div className="order-history-list">
+            {emailOrderHistory.length === 0 ? (
+              <p className="cart-empty">No order history for this email yet.</p>
+            ) : (
+              emailOrderHistory.map((order) => (
+                <article key={order.orderId} className="history-card">
+                  <p><strong>Order ID:</strong> {order.orderId}</p>
+                  <p><strong>Status:</strong> {order.status}</p>
+                  <p><strong>Placed:</strong> {order.placedAt}</p>
+                  <div className="history-items">
+                    {order.items.map((item, itemIndex) => (
+                      <p key={`${order.orderId}-${itemIndex}`}>
+                        {item.name} - {item.quantityKey.toUpperCase()} x {item.count} = {formatRupees(item.lineTotal)}
+                      </p>
+                    ))}
+                  </div>
+                  <p><strong>Total:</strong> {formatRupees(order.total)}</p>
+                </article>
+              ))
+            )}
+          </div>
+        ) : (
+          <>
             {cartItems.length === 0 ? (
               <p className="cart-empty">No items selected yet. Add products to continue.</p>
             ) : (
@@ -580,21 +852,50 @@ function App() {
               type="button"
               className="place-order-btn"
               onClick={handlePlaceOrder}
+              disabled={cartItems.length === 0}
             >
               Place Order
             </button>
 
-            {orderStatus !== 'idle' ? (
-              <div className="order-flow" aria-live="polite">
-                <p className="order-success">Order confirmed successfully ✅</p>
-                <p className={orderStatus === 'ordered' ? 'flow-step active' : 'flow-step'}>Ordered</p>
-                <p className={orderStatus === 'out-for-delivery' ? 'flow-step active' : 'flow-step'}>Out for Delivery</p>
-                <p className={orderStatus === 'delivered' ? 'flow-step active' : 'flow-step'}>Delivered</p>
+            {orderStatus !== 'idle' && orderMeta ? (
+              <div className="delivery-box" aria-live="polite">
+                <p className="delivery-title">Delivery Update</p>
+                <p><strong>Order ID:</strong> {orderMeta.orderId}</p>
+                <p><strong>Customer:</strong> {orderMeta.customerName}</p>
+                <p><strong>User ID:</strong> {loggedInUser.userId}</p>
+                <p><strong>Email:</strong> {orderMeta.customerEmail}</p>
+                <p><strong>Placed At:</strong> {orderMeta.placedAt}</p>
+                <p><strong>Delivery Address:</strong> {deliveryAddress}</p>
+                <p><strong>Order Status:</strong> {orderStatusLabel}</p>
+
+                <div className="delivery-items">
+                  <strong>Items:</strong>
+                  {cartItems.map((item) => (
+                    <p key={`delivery-${item.cartKey}`}>
+                      {item.name} - {item.quantityKey.toUpperCase()} x {item.count} = {formatRupees(item.lineTotal)}
+                    </p>
+                  ))}
+                </div>
+
+                <div className="delivery-total-line">
+                  <p>Subtotal: {formatRupees(cartSubtotal)}</p>
+                  <p>Discount: - {formatRupees(discountAmount)}</p>
+                  <p><strong>Payable Total: {formatRupees(finalTotal)}</strong></p>
+                </div>
+
+                <div className="order-flow">
+                  <p className="order-success">Order confirmed successfully ✅</p>
+                  <p className={orderStatus === 'ordered' ? 'flow-step active' : 'flow-step'}>Ordered</p>
+                  <p className={orderStatus === 'out-for-delivery' ? 'flow-step active' : 'flow-step'}>Out for Delivery</p>
+                  <p className={orderStatus === 'delivered' ? 'flow-step active' : 'flow-step'}>Delivered</p>
+                </div>
               </div>
             ) : null}
-          </div>
-        </section>
-      </main>
+          </>
+        )}
+      </aside>
+
+      {isCartPanelOpen ? <button type="button" className="cart-backdrop" onClick={() => setIsCartPanelOpen(false)} aria-label="Close order drawer" /> : null}
 
       <footer className="site-footer">
         <div className="footer-main">
@@ -661,7 +962,9 @@ function App() {
             <div className="footer-links">
               <a href="#home">Home</a>
               <a href="#about">About Us</a>
-              <a href="#blog">Blogs</a>
+              <button type="button" className="link-button footer-link-button" onClick={openHistoryPanel}>
+                History
+              </button>
               <a href="#shop">Shop</a>
               <a href="#contact">Contact Us</a>
             </div>
