@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { supabase, supabaseUrl } from './supabase';
+import { supabase } from './supabase';
+import Home from './Home';
 
 const PRODUCTS_TABLE = 'product';
 const SORT_OPTIONS = ['default', 'price-asc', 'price-desc', 'name-asc'];
-
 const FALLBACK_IMAGE =
   'data:image/svg+xml;charset=UTF-8,' +
   encodeURIComponent(`
@@ -62,6 +62,7 @@ function App() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [sortMode, setSortMode] = useState('default');
   const [viewMode, setViewMode] = useState('grid');
+  const [cartItems, setCartItems] = useState({});
 
   useEffect(() => {
     let isMounted = true;
@@ -172,58 +173,75 @@ function App() {
           ? 'Name: A to Z'
           : 'Default Sorting';
 
+  const trendingProducts = products.slice(0, 4);
+
+  const handleCategoryJump = (categoryName) => {
+    setActiveCategory(categories.includes(categoryName) ? categoryName : 'All');
+
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleAddToCart = (productId) => {
+    setCartItems((previous) => ({
+      ...previous,
+      [productId]: (previous[productId] || 0) + 1,
+    }));
+  };
+
+  const getCartCount = (productId) => cartItems[productId] || 0;
+
   return (
     <div className="page-shell">
-      <header className="hero">
-        <div className="hero-overlay" />
-        <div className="top-strip">
-          <div className="container strip-inner">
-            <div className="strip-left">
-              <div className="marquee" aria-label="Store update">
-                <span>Supabase table: public.product</span>
-              </div>
-              <button type="button" className="language-pill tap-action">
-                Live data
-              </button>
-            </div>
-            <div className="strip-right">
-              <span className="top-strip-action">Connected to {supabaseUrl}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="container nav-row">
-          <div className="brand">
-            <div className="brand-mark">F</div>
-            <div className="brand-text">
-              <span>FLIP</span>
-              <strong>MARK</strong>
-            </div>
-          </div>
-
-          <div className="search-box">
-            <input
-              type="text"
-              aria-label="Search products"
-              placeholder="Search name or category"
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-            />
-            <button type="button" onClick={() => setSearchTerm('')}>
-              Clear
-            </button>
-          </div>
-        </div>
-
-        <div className="hero-content container">
-          <h1>Product browser</h1>
-          <p>Reads directly from your Supabase product table and shows the live catalog.</p>
-        </div>
-      </header>
+      <Home
+        categories={categories}
+        trendingProducts={trendingProducts}
+        products={products}
+        onJumpToProducts={handleCategoryJump}
+        fallbackImage={FALLBACK_IMAGE}
+        formatPrice={formatPrice}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
 
       <main>
-        <section className="categories-section container" id="shop">
-          <h2>Categories</h2>
+        <section className="categories-section container" id="products">
+          <h2>Trending Products</h2>
+
+          <div className="trending-grid">
+            {trendingProducts.length === 0 ? (
+              <div className="empty-state">Loading trending products...</div>
+            ) : (
+              trendingProducts.map((product) => (
+                <article className="trending-card" key={product.id}>
+                  <div className="product-visual">
+                    <img src={product.imageUrl || FALLBACK_IMAGE} alt={product.name || 'Product image'} />
+                  </div>
+                  <div className="product-meta">
+                    <span className="product-category">{product.category || 'Uncategorized'}</span>
+                    <h3>{product.name || 'Unnamed product'}</h3>
+                    <div className="price-row">
+                      <span className="price-label">Price</span>
+                      <span className="price-now">{formatPrice(product.price)}</span>
+                    </div>
+                    <button
+                      type="button"
+                      className="primary-cta small-cta"
+                      onClick={() => handleAddToCart(product.id)}
+                    >
+                      {getCartCount(product.id) > 0 ? `Add to Cart (${getCartCount(product.id)})` : 'Add to Cart'}
+                    </button>
+                  </div>
+                </article>
+              ))
+            )}
+          </div>
+
+          <div className="categories-section-spacer">
+            <h3>Browse all categories</h3>
+          </div>
 
           <div className="categories-grid">
             {categories.map((categoryName) => (
@@ -330,6 +348,13 @@ function App() {
                       <span className="price-label">Created</span>
                       <span>{formatDate(product.created_at)}</span>
                     </div>
+                    <button
+                      type="button"
+                      className="primary-cta small-cta"
+                      onClick={() => handleAddToCart(product.id)}
+                    >
+                      {getCartCount(product.id) > 0 ? `Add to Cart (${getCartCount(product.id)})` : 'Add to Cart'}
+                    </button>
                   </div>
                 </article>
               ))
