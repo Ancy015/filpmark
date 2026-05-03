@@ -948,6 +948,150 @@ a {
   gap: 8px;
 }
 
+.header-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.auth-link-button,
+.cart-icon-button {
+  border: 1px solid #cfc8be;
+  background: #fff;
+  color: #2f6e0d;
+  border-radius: 999px;
+  padding: 0 14px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cart-icon-button {
+  position: relative;
+}
+
+.cart-badge {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #f07f13;
+  color: #fff;
+  display: inline-grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.cart-preview-wrap {
+  position: relative;
+}
+
+.cart-preview-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 25;
+  width: min(320px, calc(100vw - 24px));
+  border: 1px solid #e5dccb;
+  border-radius: 16px;
+  background: #fffefb;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+  padding: 14px;
+}
+
+.cart-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.cart-preview-head strong {
+  color: #1f7b2e;
+}
+
+.cart-preview-empty {
+  margin: 0 0 12px;
+  color: #6d6b63;
+  font-size: 13px;
+}
+
+.cart-preview-list {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.cart-preview-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  color: #38352f;
+}
+
+.price-filter-input {
+  width: 110px;
+  border: 1px solid #cfc8be;
+  background: #fff;
+  color: #59564f;
+  border-radius: 999px;
+  padding: 0 12px;
+  height: 28px;
+  font-size: 12px;
+}
+
+.wishlist-heart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e3d8c7;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #8c877c;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+}
+
+.wishlist-heart.active {
+  color: #c44040;
+  border-color: #e8b1b1;
+}
+
+.product-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.qty-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-inline strong {
+  min-width: 18px;
+  text-align: center;
+}
+
 .icon-button,
 .sort-button {
   border: 1px solid #cfc8be;
@@ -1094,6 +1238,12 @@ a {
 .cart-drawer h3 {
   margin: 0;
   color: #2f6e0d;
+}
+
+.cart-drawer p {
+  margin: 4px 0 0;
+  color: #6d6b63;
+  font-size: 13px;
 }
 
 .cart-drawer-close {
@@ -1259,6 +1409,21 @@ a {
   padding-top: 12px;
 }
 
+.cart-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #38352f;
+  font-weight: 700;
+}
+
+.cart-summary-row strong {
+  color: #1f7b2e;
+  font-size: 18px;
+}
+
 .cart-total-box p {
   margin: 6px 0;
   display: flex;
@@ -1271,6 +1436,91 @@ a {
 .cart-total-box .final-total {
   color: #1f7b2e;
   font-weight: 700;
+}
+
+.cart-empty-state {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  text-align: left;
+}
+
+.promo-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.promo-input {
+  flex: 1;
+  border: 1px solid #ddd6cc;
+  border-radius: 8px;
+  background: #fff;
+  color: #3c3c36;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.checkout-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.checkout-secondary {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.auth-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.35);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.auth-modal {
+  min-height: auto;
+  padding: 0;
+  background: transparent;
+}
+
+.auth-modal .auth-page-card {
+  width: min(460px, calc(100vw - 32px));
+}
+
+.auth-error {
+  color: #b54848;
+}
+
+.auth-account-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.auth-link {
+  color: #2f6e0d;
+  font-weight: 700;
+}
+
+.snackbar {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 70;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: #1f7b2e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 14px 30px rgba(31, 123, 46, 0.28);
 }
 
 .place-order-btn {

@@ -27,6 +27,15 @@ function Home({
   onNavigateContact,
   fallbackImage,
   formatPrice,
+  cartItemCount,
+  cartPreviewEntries,
+  cartPreviewLabel,
+  cartPreviewOpen,
+  setCartPreviewOpen,
+  onOpenAuth,
+  onCartToggle,
+  currentUserLabel,
+  isAuthenticated,
   searchTerm,
   setSearchTerm,
 }) {
@@ -52,11 +61,18 @@ function Home({
         .map((value) => ({
           value,
           label: formatSuggestionLabel(value),
+          isCategory: categories.includes(value),
         }))
         .slice(0, 8)
     : [];
 
   const handleSuggestionClick = (value) => {
+    if (categories.includes(value)) {
+      setSearchTerm('');
+      onJumpToProducts(value);
+      return;
+    }
+
     setSearchTerm(value);
     onJumpToProducts('All');
   };
@@ -135,6 +151,52 @@ function Home({
                 <strong>4.9/5</strong>
                 <span>Customer rating</span>
               </div>
+
+          <div className="header-actions">
+            <button type="button" className="auth-link-button" onClick={onOpenAuth}>
+              {isAuthenticated ? currentUserLabel : 'Login / Signup'}
+            </button>
+
+            <div className="cart-preview-wrap" onMouseEnter={() => setCartPreviewOpen(true)} onMouseLeave={() => setCartPreviewOpen(false)}>
+              <button
+                type="button"
+                className="cart-icon-button"
+                aria-label={`Cart with ${cartItemCount} item${cartItemCount === 1 ? '' : 's'}`}
+                aria-expanded={cartPreviewOpen}
+                onClick={() => {
+                  setCartPreviewOpen((previous) => !previous);
+                  onCartToggle();
+                }}
+              >
+                Cart
+                <span className="cart-badge">{cartItemCount}</span>
+              </button>
+
+              {cartPreviewOpen ? (
+                <div className="cart-preview-dropdown" role="dialog" aria-label={cartPreviewLabel}>
+                  <div className="cart-preview-head">
+                    <strong>{cartPreviewLabel}</strong>
+                    <button type="button" className="link-button" onClick={onCartToggle}>
+                      Open
+                    </button>
+                  </div>
+
+                  {cartPreviewEntries.length === 0 ? (
+                    <p className="cart-preview-empty">Your cart is empty. Add products to see them here.</p>
+                  ) : (
+                    <div className="cart-preview-list">
+                      {cartPreviewEntries.map(({ product, quantity }) => (
+                        <div className="cart-preview-item" key={product.id}>
+                          <span>{product.name || 'Unnamed product'}</span>
+                          <strong>x{quantity}</strong>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : null}
+            </div>
+          </div>
               <div>
                 <strong>24h</strong>
                 <span>Fresh dispatch</span>
