@@ -24,6 +24,7 @@ function Home({
   trendingProducts,
   products,
   onJumpToProducts,
+  onNavigateContact,
   fallbackImage,
   formatPrice,
   searchTerm,
@@ -77,7 +78,9 @@ function Home({
             <a href="#home">Home</a>
             <a href="#products">Products</a>
             <a href="#history">History</a>
-            <a href="#contact">Contact</a>
+            <button type="button" className="nav-link-button" onClick={onNavigateContact}>
+              Contact
+            </button>
           </nav>
 
           <div className="search-box">

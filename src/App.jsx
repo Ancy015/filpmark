@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import { supabase } from './supabase';
 import Home from './Home';
+import Contact from './Contact';
 
 const PRODUCTS_TABLE = 'product';
 const SORT_OPTIONS = ['default', 'price-asc', 'price-desc', 'name-asc'];
 const FALLBACK_IMAGE =
   'data:image/svg+xml;charset=UTF-8,' +
   encodeURIComponent(`
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="No image available">
+    <svg xmlns="svghttp://www.w3.org/2000/" viewBox="0 0 640 480" role="img" aria-label="No image available">
       <defs>
         <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stop-color="#f4efe6" />
@@ -55,6 +56,7 @@ function formatDate(value) {
 }
 
 function App() {
+  const [activePage, setActivePage] = useState('home');
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -193,6 +195,10 @@ function App() {
 
   const getCartCount = (productId) => cartItems[productId] || 0;
 
+  if (activePage === 'contact') {
+    return <Contact onNavigateHome={() => setActivePage('home')} />;
+  }
+
   return (
     <div className="page-shell">
       <Home
@@ -200,6 +206,7 @@ function App() {
         trendingProducts={trendingProducts}
         products={products}
         onJumpToProducts={handleCategoryJump}
+        onNavigateContact={() => setActivePage('contact')}
         fallbackImage={FALLBACK_IMAGE}
         formatPrice={formatPrice}
         searchTerm={searchTerm}
