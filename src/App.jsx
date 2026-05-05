@@ -892,6 +892,14 @@ function App() {
       return;
     }
 
+    // Prevent unauthenticated users from placing orders
+    if (!authUser) {
+      pushSnackbar('Please sign in before placing an order');
+      setAuthMode('login');
+      setAuthOpen(true);
+      return;
+    }
+
     const order = {
       id: createOrderId(),
       trackingCode: `FM-${Math.random().toString(36).slice(2, 6).toUpperCase()}`,

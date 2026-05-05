@@ -5,7 +5,7 @@ const CONTACT_CHANNELS = [
     icon: '⌂',
     label: 'Head Office',
     value: 'Flipmark Warehouse, Green Avenue',
-    note: 'Mumbai, India - 400001',
+    note: 'kanniya kumari, tamilnadu- 400001',
   },
   {
     icon: '✉',
@@ -17,7 +17,7 @@ const CONTACT_CHANNELS = [
     icon: '☎',
     label: 'Call Us',
     value: '+91 22-4567-8901',
-    note: 'Mon-Sat, 9:00 AM to 7:00 PM',
+    note: 'Mon-Sat, 1:00 AM to 12:00 PM',
   },
 ];
 
@@ -160,7 +160,7 @@ function Contact({ onNavigateHome }) {
           <div className="contact-map-canvas" style={MAP_STYLE}>
             <div className="contact-map-card">
               <strong>Flipmark office</strong>
-              <p>Central business district, Mumbai</p>
+              <p>Central business district, tamilnadu</p>
             </div>
           </div>
         </section>
@@ -181,7 +181,7 @@ function Contact({ onNavigateHome }) {
               <div>
                 <h3>Head Office</h3>
                 <p>Flipmark Warehouse</p>
-                <p>Green Avenue, Mumbai 400001</p>
+                <p>Green Avenue, Tamilnadu 400001</p>
               </div>
               <div>
                 <h3>Support</h3>
