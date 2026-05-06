@@ -4,6 +4,7 @@ import Home from './Home';
 import Contact from './Contact';
 
 const PRODUCTS_TABLE = 'product';
+const ORDERS_TABLE = 'orders';
 const SORT_OPTIONS = ['default', 'price-asc', 'price-desc', 'name-asc'];
 const WISHLIST_TABLE = 'wishlist';
 const HISTORY_TABLE = 'history';
@@ -170,6 +171,20 @@ function getUserIdentifier(authUser) {
   return authUser?.id || authUser?.email || '';
 }
 
+function isUuid(value) {
+  return typeof value === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
+
+async function getSupabaseUserId() {
+  const { data, error } = await supabase.auth.getUser();
+
+  if (error || !isUuid(data?.user?.id)) {
+    return '';
+  }
+
+  return data.user.id;
+}
+
 function buildHistoryOrders(rows, productById) {
   const groupedOrders = new Map();
 
@@ -320,6 +335,10 @@ function App() {
     const bootstrapAuth = async () => {
       const localUser = readLocalAuthUser();
 
+      if (localUser && !isUuid(localUser.id)) {
+        writeLocalAuthUser(null);
+      }
+
       try {
         const { data, error: sessionError } = await supabase.auth.getSession();
 
@@ -333,11 +352,11 @@ function App() {
 
         if (data?.session?.user) {
           setAuthUser(data.session.user);
-        } else if (localUser) {
+        } else if (localUser && isUuid(localUser.id)) {
           setAuthUser(localUser);
         }
       } catch (authLookupError) {
-        if (localUser) {
+        if (localUser && isUuid(localUser.id)) {
           setAuthUser(localUser);
         }
         console.warn('Auth bootstrap fell back to local session:', authLookupError);
@@ -509,18 +528,20 @@ function App() {
       return;
     }
 
-    const userId = getUserIdentifier(authUser);
-
-    if (!userId) {
-      setRemoteDataHydratedKey('');
-      lastWishlistSyncSignatureRef.current = '';
-      return;
-    }
-
     let isMounted = true;
 
     const loadRemoteUserData = async () => {
       try {
+        const userId = await getSupabaseUserId();
+
+        if (!userId) {
+          if (isMounted) {
+            setRemoteDataHydratedKey('');
+            lastWishlistSyncSignatureRef.current = '';
+          }
+          return;
+        }
+
         const [wishlistResponse, historyResponse] = await Promise.all([
           supabase.from(WISHLIST_TABLE).select('product_id').eq('user_id', userId),
           supabase.from(HISTORY_TABLE).select('product_id, quantity, date').eq('user_id', userId).order('date', { ascending: false }),
@@ -576,14 +597,14 @@ function App() {
       return;
     }
 
-    const userId = getUserIdentifier(authUser);
-
-    if (!userId) {
-      return;
-    }
-
     const syncWishlist = async () => {
       try {
+        const userId = await getSupabaseUserId();
+
+        if (!userId) {
+          return;
+        }
+
         const wishlistRows = Object.keys(wishlistItems).map((productId) => ({
           user_id: userId,
           product_id: productId,
@@ -763,7 +784,7 @@ function App() {
           setAuthUser(nextUser);
           writeLocalAuthUser(nextUser);
         } else {
-          const localUser = { id: email, email, user_metadata: { full_name: name || email.split('@')[0] } };
+          const localUser = { id: crypto.randomUUID(), email, user_metadata: { full_name: name || email.split('@')[0] } };
           setAuthUser(localUser);
           writeLocalAuthUser(localUser);
         }
@@ -784,7 +805,7 @@ function App() {
           setAuthUser(nextUser);
           writeLocalAuthUser(nextUser);
         } else {
-          const localUser = { id: email, email, user_metadata: { full_name: name || email.split('@')[0] } };
+          const localUser = { id: crypto.randomUUID(), email, user_metadata: { full_name: name || email.split('@')[0] } };
           setAuthUser(localUser);
           writeLocalAuthUser(localUser);
         }
@@ -796,7 +817,7 @@ function App() {
       setAuthForm({ name: '', email: '', password: '' });
     } catch (authSubmitError) {
       const fallbackUser = {
-        id: email || 'guest',
+        id: crypto.randomUUID(),
         email: email || 'guest@flipmark.local',
         user_metadata: { full_name: name || (email ? email.split('@')[0] : 'Guest') },
       };
@@ -886,6 +907,65 @@ function App() {
     });
   };
 
+  const placeOrder = async (product) => {
+    if (!product?.id) {
+      return;
+    }
+
+    const userId = await getSupabaseUserId();
+
+    if (!userId) {
+      alert('Please login first');
+      return;
+    }
+
+    const orderCreatedAt = Date.now();
+    const order = {
+      id: createOrderId(),
+      trackingCode: `FM-${Math.random().toString(36).slice(2, 6).toUpperCase()}`,
+      createdAt: orderCreatedAt,
+      items: [
+        {
+          id: String(product.id),
+          name: product.name || 'Unnamed product',
+          category: product.category || 'Uncategorized',
+          quantity: 1,
+          price: Number(product.price || 0),
+          formattedPrice: formatPrice(product.price),
+        },
+      ],
+      subtotal: Number(product.price || 0),
+      discountAmount: 0,
+      total: Number(product.price || 0),
+      paymentMethod: 'Direct order',
+      status: 'Confirmed',
+      customer: accountLabel,
+    };
+
+    const { error: insertError } = await supabase.from(ORDERS_TABLE).insert([
+      {
+        user_id: userId,
+        product_id: product.id,
+        quantity: 1,
+        created_at: new Date(orderCreatedAt).toISOString(),
+      },
+    ]);
+
+    if (insertError) {
+      console.error('Failed to insert order:', insertError);
+      alert(insertError.message || 'Unable to place order');
+      return;
+    }
+
+    setOrders((previousOrders) => [order, ...previousOrders]);
+    setDrawerView('orders');
+    setCartOpen(true);
+    pushSnackbar('Order placed successfully');
+    notifyUser('Order placed', `${order.trackingCode} has been confirmed.`);
+    scheduleOrderStatusUpdates(order.id);
+    alert('Order placed successfully');
+  };
+
   const handleCheckout = async (paymentMethod) => {
     if (cartEntries.length === 0) {
       pushSnackbar('Your cart is empty');
@@ -922,7 +1002,7 @@ function App() {
     pushSnackbar(`${paymentMethod} checkout completed`);
     notifyUser('Order placed', `${order.trackingCode} has been confirmed.`);
 
-    const userId = getUserIdentifier(authUser);
+    const userId = await getSupabaseUserId();
 
     if (userId) {
       const historyRows = cartEntries.map(({ product, quantity }) => ({
@@ -1007,9 +1087,9 @@ function App() {
                       <button
                         type="button"
                         className="primary-cta small-cta"
-                        onClick={() => handleAddToCart(product.id)}
+                        onClick={() => placeOrder(product)}
                       >
-                        {getCartCount(product.id) > 0 ? `Add (${getCartCount(product.id)})` : 'Add'}
+                        Order
                       </button>
                     </div>
                   </div>
@@ -1217,9 +1297,9 @@ function App() {
                       <button
                         type="button"
                         className="primary-cta small-cta"
-                        onClick={() => handleAddToCart(product.id)}
+                        onClick={() => placeOrder(product)}
                       >
-                        {getCartCount(product.id) > 0 ? `Add (${getCartCount(product.id)})` : 'Add'}
+                        Order
                       </button>
                     </div>
                   </div>
